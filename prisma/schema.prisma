@@ -11,15 +11,28 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Post {
+    id          String @id @default(uuid())
+    userId      String 
+    content     String
+    createdAt   DateTime @default(now())
 
-    @@index([name])
+    user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    likes       Like[]
+
+    @@index([userId])
 }
 
+model Like {
+    userId      String
+    postId      String
+    user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    Post        Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+    @@id([userId, postId])
+    @@index([userId])
+    @@index([postId])
+}
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -49,6 +62,8 @@ model Session {
     @@index([userId])
 }
 
+// user types
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -57,6 +72,12 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+
+    // no next-auth
+    posts         Post[]
+    likes         Like[]
+    followers     User[] @relation(name: "Followers")
+    following     User[] @relation(name: "Followers")
 }
 
 model VerificationToken {
