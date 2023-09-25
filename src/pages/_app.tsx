@@ -1,6 +1,7 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
+import Sidenav from "~/components/Sidenav";
 
 import { api } from "~/utils/api";
 
@@ -23,7 +24,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto flex">
-        <Component {...pageProps} />
+        <Sidenav />
+        <div className=" min-h-screen flex-grow border-x">
+          <Component {...pageProps} />
+        </div>
       </div>
     </SessionProvider>
   );
