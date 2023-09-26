@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Button";
 
 export default function NewPostForm() {
   return (
@@ -12,7 +13,7 @@ export default function NewPostForm() {
             placeholder="Rave, estatic. Type here ⚡️"
           />
         </div>
-        <button>This is clickable</button>
+        <Button>Post</Button>
       </form>
     </>
   );
