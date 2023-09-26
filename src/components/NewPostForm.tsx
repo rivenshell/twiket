@@ -12,7 +12,7 @@ export default function NewPostForm() {
     <>
       <form className="flex flex-col gap-2 border-b px-6 py-2">
         <div className="flex gap-4">
-          <ProfileImage src={sesson.data.user} />
+          <ProfileImage src={sesson.data.user.image} />
           {/* form text and profile image goes here */}
           <textarea
             className="flex-grow resize-none overflow-hidden outline-none"
