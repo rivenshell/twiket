@@ -8,6 +8,8 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Head from "next/head";
 
+// decided to incorperate a side nav into App.tsx becasue the sidenav should be rendered alongside other componenta
+
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
